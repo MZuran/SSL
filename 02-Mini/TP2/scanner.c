@@ -2,7 +2,7 @@
 
 bool debo_parar(t_token estado) {
     switch (estado) {
-    case ERROR:
+    case ERROR_GENERAL:
         return true;
 
     default:
@@ -12,7 +12,7 @@ bool debo_parar(t_token estado) {
 
 bool centinela(t_token estado) {
     switch (estado) {
-    case ERROR:
+    case ERROR_GENERAL:
         return true;
 
     default:
