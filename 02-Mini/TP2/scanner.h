@@ -5,10 +5,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void scan(char *input, size_t len);
+typedef struct {
+    int indice;
+    int token;
+    char lexema[32];
+}t_respuesta_scan;
 
-/// @brief 
+t_respuesta_scan scan(char *input, int indice_inicial);
+
 typedef enum {
+    //INTERMEDIOS
+    ESTADO_INICIAL,
+    ESTADO_IDENTIFICADOR,
+    ESTADO_CONSTANTE,
+    ESTADO_ASIGNACION,
+    LEXEMA_INVALIDO,
+    //MISC
+    ESPACIO,
+    FDT,
     //FINALES
     IDENTIFICADOR,
     CONSTANTE,
@@ -28,13 +42,25 @@ typedef enum {
     ERROR_ASIGNACION_1,
     ERROR_ASIGNACION_2,
     ERROR_GENERAL,
-    //INTERMEDIOS
-    ESTADO_INICIAL,
-    ESTADO_IDENTIFICADOR,
-    ESTADO_CONSTANTE,
-    //MISC
-    LEXEMA_INVALIDO,
-    FDT
 } t_token;
+
+typedef enum {
+    C_LETRA,
+    C_DIGITO,
+    C_MAS,
+    C_MENOS,
+    C_POR,
+    C_DIVISION,
+    C_PORCENTAJE,
+    C_DOS_PUNTOS,
+    C_IGUAL,
+    C_PARENTESIS_ABRE,
+    C_PARENTESIS_CIERRA,
+    C_COMA,
+    C_PUNTO_COMA,
+    C_ESPACIO,
+    C_FDT,
+    C_OTRO,
+} t_caracter;
 
 #endif // SCANNER_H

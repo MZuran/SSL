@@ -19,7 +19,8 @@ int main() {
         { return 1; }
     }
 
-    scan(input, len);
+    t_respuesta_scan respuesta = scan(input, 0);
+    printf("Este es el lexema de la respuesta %s \n", respuesta.lexema);
 
     return 0;
 }
