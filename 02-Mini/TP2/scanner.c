@@ -42,6 +42,10 @@ t_caracter interpretar_caracter(char c) {
         return C_MAS;
     case '-':
         return C_MENOS;
+    case ':':
+        return C_DOS_PUNTOS;
+    case '=':
+        return C_IGUAL;
     case '*':
         return C_POR;
     case '/':
@@ -122,9 +126,9 @@ char *interpretar_estado(t_token estado) {
     case ERROR_CONSTANTE:
         return "Error Constante";
     case ERROR_ASIGNACION_1:
-        return "Error Asignación 1";
+        return "Error Asignación por dos puntos solo";
     case ERROR_ASIGNACION_2:
-        return "Error Asignación 2";
+        return "Error Asignación por igual solo";
     case ERROR_GENERAL:
         return "Error General";
 
@@ -137,8 +141,8 @@ char *interpretar_estado(t_token estado) {
 t_respuesta_scan scan(char *input, int indice_inicial) {
     int estado = ESTADO_INICIAL;
     int indice_caracter = indice_inicial;
-    
-    t_respuesta_scan respuesta;
+
+    t_respuesta_scan respuesta = {0, 0, ""};
 
     while (!debo_parar(estado))
     {
@@ -149,7 +153,7 @@ t_respuesta_scan scan(char *input, int indice_inicial) {
         estado = TABLA[estado][caracter_interpretado];
         indice_caracter++;
 
-        printf("Mi estado es %s \n", interpretar_estado(estado));
+        //printf("Mi estado es %s \n", interpretar_estado(estado));
     }
 
     if(es_centinela(estado)){
@@ -160,6 +164,6 @@ t_respuesta_scan scan(char *input, int indice_inicial) {
     respuesta.indice = indice_caracter;
     respuesta.token = estado;
     
-    printf("El caracter entero es %s \n", input);
+    //printf("El caracter entero es %s \n", input);
     return respuesta;
 }

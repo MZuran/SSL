@@ -63,4 +63,6 @@ typedef enum {
     C_OTRO,
 } t_caracter;
 
+char *interpretar_estado(t_token estado);
+
 #endif // SCANNER_H
